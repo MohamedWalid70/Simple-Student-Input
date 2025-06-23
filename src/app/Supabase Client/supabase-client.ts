@@ -3,5 +3,5 @@ import { environment } from "../../environments/environment.development";
 
 export const supabase = createClient(
     environment.projectUrl,
-    environment.projectUrl
+    environment.apiKey
 ) 
