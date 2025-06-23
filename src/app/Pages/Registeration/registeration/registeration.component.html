@@ -1,0 +1,57 @@
+<div class="d-flex justify-content-center align-items-center min-vh-100" style="background: linear-gradient(135deg, #e0e7ff 0%, #f8fafc 100%);">
+  <div class="m-5 card shadow-lg border-0" style="max-width: 500px; width: 100%; border-radius: 1.5rem; backdrop-filter: blur(8px) saturate(120%); background: rgba(255,255,255,0.85);">
+    <div class="card-body p-5">
+      <div class="d-flex flex-column align-items-center mb-4">
+        <div class="bg-primary bg-gradient rounded-circle d-flex justify-content-center align-items-center mb-3 shadow" style="width: 70px; height: 70px; box-shadow: 0 8px 32px rgba(13,110,253,0.18);">
+          <i class="bi bi-person-plus-fill text-white fs-1"></i>
+        </div>
+        <h2 class="mb-1 fw-bold text-primary">Student Registration</h2>
+        <div class="text-secondary mb-2 fst-italic small">Unlock your educational journey – sign up!</div>
+        <hr class="w-50 mb-0 mt-2" />
+      </div>
+      <!-- Success alert placeholder -->
+       @if(this.Response.error!=null){
+        <div class="alert alert-danger d-flex align-items-center" role="alert">
+            <i class="bi bi-x-circle me-2"></i>
+                Failure to submit the data
+        </div>
+        }
+      <form #regForm="ngForm" (ngSubmit)="onSubmit()" autocomplete="off" novalidate>
+        <div class="form-floating mb-3">
+          <input type="text" id="studentName" name="studentName" [(ngModel)]="Input().name" class="form-control" required placeholder="Student Name" #studentName="ngModel">
+          <label for="studentName"><i class="bi bi-person me-2"></i>Student Name</label>
+          <div *ngIf="studentName.invalid && (studentName.dirty || studentName.touched)" class="text-danger small mt-1 ms-1">
+            <div *ngIf="studentName.errors?.['required']">Student name is required</div>
+          </div>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="number" id="age" name="age" [(ngModel)]="Input().age" class="form-control" min="5" max="50" required placeholder="Age" #age="ngModel">
+          <label for="age"><i class="bi bi-123 me-2"></i>Age</label>
+          <div *ngIf="age.invalid && (age.dirty || age.touched)" class="text-danger small mt-1 ms-1">
+            <div *ngIf="age.errors?.['required']">Age is required</div>
+            <div *ngIf="age.errors?.['min']">Age must be at least 5</div>
+            <div *ngIf="age.errors?.['max']">Age must be less than 50</div>
+          </div>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="text" id="instrument" name="instrument" [(ngModel)]="Input().instrumentofinterest" class="form-control" required placeholder="Instrument of Interest" #instrument="ngModel">
+          <label for="instrument"><i class="bi bi-music-note-beamed me-2"></i>Instrument of Interest</label>
+          <div *ngIf="instrument.invalid && (instrument.dirty || instrument.touched)" class="text-danger small mt-1 ms-1">
+            <div *ngIf="instrument.errors?.['required']">Instrument of interest is required</div>
+          </div>
+        </div>
+        <div class="form-floating mb-4">
+          <input type="tel" id="parentPhone" name="parentPhone" [(ngModel)]="Input().parentphonenumber" class="form-control" pattern="[0-9]{11}" required placeholder="Parent Phone Number" #parentPhone="ngModel">
+          <label for="parentPhone"><i class="bi bi-telephone me-2"></i>Parent Phone Number</label>
+          <div *ngIf="parentPhone.invalid && (parentPhone.dirty || parentPhone.touched)" class="text-danger small mt-1 ms-1">
+            <div *ngIf="parentPhone.errors?.['required']">Parent phone number is required</div>
+            <div *ngIf="parentPhone.errors?.['pattern']">Phone number must be 11 digits</div>
+          </div>
+        </div>
+        <button type="submit" class="btn w-100 py-2 fs-5 fw-semibold shadow-sm text-white" style="background: linear-gradient(90deg, #4f8cff 0%, #6f6fff 100%); border: none; transition: transform 0.15s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" [disabled]="regForm.invalid">
+          <i class="bi bi-check-circle me-2"></i>Submit
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
