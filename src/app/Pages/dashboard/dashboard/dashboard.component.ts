@@ -52,7 +52,7 @@ export class DashboardComponent implements OnInit {
       this.errorMessage.update(em => em = `Error deleting registration: ${error.message}`);
     } else {
       this.Entries.update((entries: Student[]) => entries.filter((entry: Student) => entry.id !== id));
-      this.successMessage.update(sm => sm = 'Registration deleted successfully!');
+      this.successMessage.update(sm => sm = 'Entry deleted successfully!');
     }
     setTimeout(() => this.clearAlerts(), 4000);
   }
